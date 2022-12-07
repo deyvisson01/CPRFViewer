@@ -63,6 +63,7 @@ export default createGlobalStyle`
     --gradient-blue-base: linear-gradient(60deg, rgb(115, 19, 14) 0%, rgb(193,47,25)100%);
 
     --white: #FFF;
+    --black: #000;
     --yellow: #e5bf00;
 
     --primary-color: #C12F19;

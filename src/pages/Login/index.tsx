@@ -22,7 +22,7 @@ function Login() {
       <Container>
         <Content>
           <Form>
-            <Title>Login, {CPRFs[0].id}</Title>
+            <Title>Login</Title>
             <Button
               children="Avançar"
               disabled={false}
