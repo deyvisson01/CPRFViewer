@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
+import * as dayjs from 'dayjs'
 
 import { Container, Content, Form, Title } from './styles';
+import { CPRFContext } from '../../store/context';
+import { CPRFList } from '../../store/types';
 
 function Login() {
   const history = useNavigate();
   const [loading, setLoading] = useState(false)
 
+  const { CPRFs } = React.useContext(CPRFContext) as CPRFList;
   const homeRedirect = () => {
     setLoading(true)
     setTimeout(() => history('/Home'), 1500)
@@ -18,7 +22,7 @@ function Login() {
       <Container>
         <Content>
           <Form>
-            <Title>Login</Title>
+            <Title>Login, {CPRFs[0].id}</Title>
             <Button
               children="Avançar"
               disabled={false}
