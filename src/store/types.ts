@@ -6,8 +6,8 @@ export interface CPRF {
   rate: number
   signedDate: Date
   autoClosingDate: Date
-  closingDate: Date
-  closingAmount: number
+  closingDate?: Date
+  closingAmount?: number
 }
 
 export type CPRFList = {

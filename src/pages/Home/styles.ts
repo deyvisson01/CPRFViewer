@@ -7,24 +7,22 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 `
 export const Content = styled.div`
   width: 100%;
   height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
 `
 
 export const ListCPRFs = styled.div`
-  width: 40%;
+  width: 80%;
   height: 100%;
-  margin: 80px 0 20px 0;
+  margin: 130px 0 20px 0;
   padding: 20px 10px;
+  min-width: 600px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -82,8 +80,8 @@ export const ContainerForm = styled.div`
   margin: 20px 0;
 
   *:after{
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
   }
 `

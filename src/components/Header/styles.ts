@@ -9,7 +9,7 @@ export const Container = styled.header`
 
   z-index: 2;
   width: 100vw;
-  height: 110px;
+  height: 120px;
   position: relative;
   position: fixed;
   top: 0;

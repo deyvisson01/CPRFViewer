@@ -21,8 +21,6 @@ const CPRFProvider: React.FC<Props> = ({ children }) => {
       rate: calcRate(new Date(dayjs('2022-11-16T13:39:11-03:00').toString())),
       signedDate: new Date(dayjs('2022-11-16T13:39:11-03:00').toString()),
       autoClosingDate: calcAutoClosingDate(new Date(dayjs('2022-11-16T13:39:11-03:00').toString())),
-      closingDate: calcAutoClosingDate(new Date(dayjs('2022-11-16T13:39:11-03:00').toString())),
-      closingAmount: calcClosingAmount(new Date(dayjs('2022-11-16T13:39:11-03:00').toString()), 5000),
     },{
       id: uuidv4(),
       initialAmount: 10000,
@@ -31,8 +29,6 @@ const CPRFProvider: React.FC<Props> = ({ children }) => {
       rate: calcRate(new Date(dayjs('2022-12-16T13:39:11-03:00').toString())),
       signedDate: new Date(dayjs('2022-12-16T13:39:11-03:00').toString()),
       autoClosingDate: calcAutoClosingDate(new Date(dayjs('2022-12-16T13:39:11-03:00').toString())),
-      closingDate: calcAutoClosingDate(new Date(dayjs('2022-12-16T13:39:11-03:00').toString())),
-      closingAmount: calcClosingAmount(new Date(dayjs('2022-12-16T13:39:11-03:00').toString()), 10000),
     },
   ])
 

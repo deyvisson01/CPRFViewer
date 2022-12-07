@@ -16,6 +16,7 @@ export default createGlobalStyle`
   :root {
     /* Size */
     --size-8: 8px;
+    --size-12: 12px;
     --size-16: 16px;
     --size-24: 24px;
     --size-32: 32px;
