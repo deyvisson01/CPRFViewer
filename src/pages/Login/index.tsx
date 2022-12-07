@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Button from '../../components/Button';
 
 import { Container, Content, Form, Title } from './styles';
 
@@ -18,6 +19,13 @@ function Login() {
         <Content>
           <Form>
             <Title>Login</Title>
+            <Button
+              children="Avançar"
+              disabled={false}
+              type="primary"
+              loading={loading}
+              onClick={() => homeRedirect()}
+            />
           </Form>
         </Content>
         <div>
