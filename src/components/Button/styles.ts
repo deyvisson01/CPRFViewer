@@ -38,9 +38,9 @@ export const Container = styled.div<Props>`
     }
 
     &.primary {
-      background-color: var(--color-blue-base);
+      background-color: var(--primary-color);
       color: var(--white);
-      border: 1px solid var(--color-blue-base);
+      border: 1px solid var(--primary-color);
 
       img {
         margin-left: 0;
@@ -54,8 +54,8 @@ export const Container = styled.div<Props>`
 
     &.outlined {
       background-color: var(--background-white);
-      color: var(--color-blue-base);
-      border: 1px solid var(--color-blue-base);
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
 
       img {
         margin-left: 0;
@@ -63,7 +63,7 @@ export const Container = styled.div<Props>`
       }
 
       :not(:disabled):hover {
-        background-color: var(--color-blue-base);
+        background-color: var(--primary-color);
         color: var(--white);
       }
     }

@@ -60,10 +60,12 @@ export default createGlobalStyle`
     --color-orange-base: #d7ac07;
 
      /* Background gradient */
-    --gradient-blue-base: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+    --gradient-blue-base: linear-gradient(60deg, rgb(115, 19, 14) 0%, rgb(193,47,25)100%);
 
     --white: #FFF;
     --yellow: #e5bf00;
+
+    --primary-color: #C12F19;
 
     --background-green-primary: #03dd8a;
     --background-white: #fff;
