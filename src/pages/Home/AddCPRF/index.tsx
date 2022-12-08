@@ -31,7 +31,7 @@ const CPRFDetail = () => {
           </DataContainer>
           <Button
             children='FINALIZAR'
-            disabled={errorValue}
+            disabled={errorValue || cprfValue == 0}
             type="primary"
             loading={loading}
             onClick={() => null}
