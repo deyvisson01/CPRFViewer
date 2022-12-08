@@ -6,7 +6,8 @@ import logo from '../../../assets/logo.svg'
 import { CPRF } from '../../../store/types';
 
 type Props = {
-  cprf: CPRF
+  cprf: CPRF,
+  showDetails: () => void
 }
 
 const Item = (props: Props) => {
@@ -14,7 +15,7 @@ const Item = (props: Props) => {
   return (
     <>
       <Container>
-        <Content>
+        <Content onClick={props.showDetails}>
           <DataContainer>
             <div>
               <div>
@@ -30,7 +31,7 @@ const Item = (props: Props) => {
             <div>
               <div>
                 <Label>Taxa</Label>
-                <Title>{props.cprf.rate}{props.cprf.type === 'ipca' && ' + IPCA'}</Title>
+                <Title>{props.cprf.rate+`%`}{props.cprf.type === 'ipca' && ' + IPCA'}</Title>
               </div>
               <div>
                 {props.cprf.status === 'liquidada' ?

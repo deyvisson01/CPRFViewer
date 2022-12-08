@@ -25,11 +25,13 @@ const CPRFProvider: React.FC<Props> = ({ children }) => {
       id: uuidv4(),
       initialAmount: 10000,
       type: 'ipca',
-      status: 'ativa',
-      rate: calcRate(new Date(dayjs('2022-12-16T13:39:11-03:00').toString())),
-      signedDate: new Date(dayjs('2022-12-16T13:39:11-03:00').toString()),
-      autoClosingDate: calcAutoClosingDate(new Date(dayjs('2022-12-16T13:39:11-03:00').toString())),
-    },
+      status: 'liquidada',
+      rate: calcRate(new Date(dayjs('2022-10-16T13:39:11-03:00').toString())),
+      signedDate: new Date(dayjs('2021-10-16T13:39:11-03:00').toString()),
+      autoClosingDate: calcAutoClosingDate(new Date(dayjs('2022-10-16T13:39:11-03:00').toString())),
+      closingDate: new Date(dayjs('2022-10-16T13:39:11-03:00').toString()),
+      closingAmount: calcClosingAmount(new Date(dayjs('2022-10-16T13:39:11-03:00').toString()), 10000)
+    }
   ])
 
   const saveCPRF = (CPRF: CPRF) => {

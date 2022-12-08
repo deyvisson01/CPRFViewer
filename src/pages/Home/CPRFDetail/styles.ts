@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 100%;
-  min-width: 600px;
+  width: 98%;
   display: flex;
   justify-content: center;
   padding: 10px 10px 10px 20px;
@@ -10,12 +9,6 @@ export const Container = styled.div`
   border-radius: var(--border-radius-md);
   box-shadow: var(--box-shadow-level-1);
   background-color: var(--background-green-primary);
-
-  img{
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-  }
 `
 export const Content = styled.div`
   width: 100%;
@@ -23,7 +16,7 @@ export const Content = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  cursor: pointer;
+  align-items: center;
 `
 export const DataContainer = styled.div`
   display: flex;
