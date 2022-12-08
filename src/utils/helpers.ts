@@ -22,6 +22,14 @@ export function calcRate(date: Date): number {
   return parseFloat((days*0.03835).toFixed(4))
 }
 
+export function calcFinalRate(startDate: Date, endDate: Date): number {
+  let diffM = new Date(endDate).getTime() - new Date(startDate).getTime()
+  let diffDays = diffM / (1000 * 60 * 60 * 24)
+  let days = parseInt(diffDays.toFixed(0))
+
+  return parseFloat((days*0.03835).toFixed(4))
+}
+
 // Adding 1 year
 export function calcAutoClosingDate(signedDate: Date): Date {
   var newDate = new Date(signedDate);

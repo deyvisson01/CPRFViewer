@@ -13,5 +13,6 @@ export interface CPRF {
 export type CPRFList = {
   CPRFs: CPRF[];
   saveCPRF: (todo: CPRF) => void;
+  createCPRF: (value: number) => void;
   updateCPRF: (id: string) => void;
 }

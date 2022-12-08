@@ -1,8 +1,6 @@
-import React, { FC } from 'react'
 
 import { Container, Content, DisplayDate, Title, Label, DataContainer } from './styles';
 import * as dayjs from 'dayjs'
-import logo from '../../../assets/logo.svg'
 import { CPRF } from '../../../store/types';
 
 type Props = {
@@ -49,7 +47,6 @@ const Item = (props: Props) => {
             </div>
           </DataContainer>
         </Content>
-        <img src={logo} alt="Deletar evento"/>
       </Container>
     </>
   )

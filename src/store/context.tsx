@@ -3,6 +3,7 @@ import * as dayjs from 'dayjs'
 import { v4 as uuidv4 } from 'uuid';
 import { calcAutoClosingDate, calcClosingAmount, calcRate } from "../utils/helpers";
 import { CPRFList, CPRF } from "./types";
+import { apiDefault } from "../api/webApi";
 
 interface Props {
   children: React.ReactNode;
@@ -34,19 +35,25 @@ const CPRFProvider: React.FC<Props> = ({ children }) => {
     }
   ])
 
-  const saveCPRF = (CPRF: CPRF) => {
-    const newCPRF: CPRF = {
+  const createCPRF = async (value: number) => {
+    let typeCPRF = value >= 5000 ? 'cupom' : 'bullet'
+    let response = await apiDefault.createCPRF(value)
+
+    let newCPRF = {
       id: uuidv4(),
-      initialAmount: CPRF.initialAmount,
-      type: CPRF.type,
-      status: CPRF.status,
-      rate: CPRF.rate,
-      signedDate: CPRF.signedDate,
-      autoClosingDate: CPRF.autoClosingDate,
-      closingDate: CPRF.autoClosingDate,
-      closingAmount: CPRF.closingAmount,
-    };
-    setCPRFList([...CPRFs, newCPRF])
+      initialAmount: value,
+      type: typeCPRF,
+      status: 'ativa',
+      rate: typeCPRF === 'cupom' ? response.cupom.rate : response.bullet.rate,
+      signedDate: typeCPRF === 'cupom' ? response.cupom.startDate : response.bullet.startDate,
+      autoClosingDate: typeCPRF === 'cupom' ? response.cupom.endDate : response.bullet.endDate
+    }
+
+    saveCPRF(newCPRF)
+  }
+
+  const saveCPRF = (CPRF: CPRF) => {
+    setCPRFList([...CPRFs, CPRF])
   };
 
   const updateCPRF = (id: string) => {
@@ -62,7 +69,7 @@ const CPRFProvider: React.FC<Props> = ({ children }) => {
   }
 
   return (
-    <CPRFContext.Provider value={{ CPRFs, saveCPRF, updateCPRF }}>
+    <CPRFContext.Provider value={{ CPRFs, saveCPRF, createCPRF, updateCPRF }}>
       {children}
     </CPRFContext.Provider>
   );

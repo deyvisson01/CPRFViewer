@@ -1,16 +1,19 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
 import { Container, Content, DisplayDate, Title, Label, DataContainer } from './styles';
 import * as dayjs from 'dayjs'
-import { CPRF } from '../../../store/types';
+import { CPRF, CPRFList } from '../../../store/types';
 import Button from '../../../components/Button';
 import { calcClosingAmount } from '../../../utils/helpers';
 import Input from '../../../components/Input';
+import { CPRFContext } from '../../../store/context';
 
 
 const CPRFDetail = () => {
   const [loading, setLoading] = useState(false)
   const [cprfValue, setCprfValue] = useState<any | null>(null)
+
+  const { createCPRF } = React.useContext(CPRFContext) as CPRFList;
 
   const errorValue = (cprfValue < 5000 || cprfValue > 10000000) && cprfValue > 0
 
@@ -34,7 +37,7 @@ const CPRFDetail = () => {
             disabled={errorValue || cprfValue == 0}
             type="primary"
             loading={loading}
-            onClick={() => null}
+            onClick={() => createCPRF(parseInt(cprfValue))}
           />
         </Content>
       </Container>
