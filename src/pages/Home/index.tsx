@@ -117,7 +117,7 @@ function Home() {
           title="Adquirir nova CPRF"
           onClose={() => setShowAddModal(false)}
         >
-          <AddCPRF />
+          <AddCPRF closeModal={() => setShowAddModal(false)}/>
         </Modal>
       )}
     </>

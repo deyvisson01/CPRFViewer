@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { calcAutoClosingDate, calcClosingAmount, calcRate } from "../utils/helpers";
 import { CPRFList, CPRF } from "./types";
 import { apiDefault } from "../api/webApi";
+import { toast } from "react-toastify";
 
 interface Props {
   children: React.ReactNode;
@@ -54,6 +55,9 @@ const CPRFProvider: React.FC<Props> = ({ children }) => {
 
   const saveCPRF = (CPRF: CPRF) => {
     setCPRFList([...CPRFs, CPRF])
+    toast.success("CPRF adicionada!", {
+      position: toast.POSITION.TOP_RIGHT
+    });
   };
 
   const updateCPRF = (id: string) => {
@@ -64,6 +68,10 @@ const CPRFProvider: React.FC<Props> = ({ children }) => {
         cprf.closingAmount = calcClosingAmount(cprf.signedDate, cprf.initialAmount);
 
         setCPRFList([...CPRFs])
+
+        toast.success("CPRF liquidada!", {
+          position: toast.POSITION.TOP_RIGHT
+        });
       }
     })
   }

@@ -1,21 +1,29 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
-import { Container, Content, DisplayDate, Title, Label, DataContainer } from './styles';
-import * as dayjs from 'dayjs'
-import { CPRF, CPRFList } from '../../../store/types';
+import { Container, Content, DataContainer } from './styles';
+import { CPRFList } from '../../../store/types';
 import Button from '../../../components/Button';
-import { calcClosingAmount } from '../../../utils/helpers';
 import Input from '../../../components/Input';
 import { CPRFContext } from '../../../store/context';
 
+type Props = {
+  closeModal: () => void
+}
 
-const CPRFDetail = () => {
+const CPRFDetail = (props: Props) => {
   const [loading, setLoading] = useState(false)
   const [cprfValue, setCprfValue] = useState<any | null>(null)
 
   const { createCPRF } = React.useContext(CPRFContext) as CPRFList;
 
   const errorValue = (cprfValue < 5000 || cprfValue > 10000000) && cprfValue > 0
+
+  const submit = async () => {
+    setLoading(true)
+    await createCPRF(parseInt(cprfValue))
+    props.closeModal()
+    setLoading(false)
+  }
 
   return (
     <>
@@ -34,10 +42,10 @@ const CPRFDetail = () => {
           </DataContainer>
           <Button
             children='FINALIZAR'
-            disabled={errorValue || cprfValue == 0}
+            disabled={errorValue || cprfValue == 0 || loading}
             type="primary"
             loading={loading}
-            onClick={() => createCPRF(parseInt(cprfValue))}
+            onClick={() => submit()}
           />
         </Content>
       </Container>
