@@ -14,12 +14,14 @@ import { CPRFContext } from '../../store/context';
 import { CPRF, CPRFList } from '../../store/types';
 import Item from './Item';
 import CPRFDetail from './CPRFDetail';
+import AddCPRF from './AddCPRF';
 import { Container, ContainerButton, ContainerForm, Content, ListCPRFs, Title, TitleModal } from './styles';
 
 
 function Home() {
   const { CPRFs, updateCPRF } = React.useContext(CPRFContext) as CPRFList;
 
+  const [showAddModal, setShowAddModal] = useState(false)
   const [showDetailModal, setShowDetailModal] = useState(false)
   const [cprfDetails, setCprfDetails] = useState<CPRF>()
 
@@ -40,6 +42,13 @@ function Home() {
         <Header />
         <Content>
           <ListCPRFs>
+            <Button
+              children='NOVA CPRF'
+              disabled={false}
+              type="outlined"
+              loading={false}
+              onClick={() => setShowAddModal(true)}
+            />
             {CPRFs && CPRFs.map(cprf => (
               <Item cprf={cprf} showDetails={() => showDetails(cprf)} />
             ))}
@@ -55,6 +64,16 @@ function Home() {
           onClose={() => setShowDetailModal(false)}
         >
           <CPRFDetail cprf={cprfDetails!} endCPRF={() => settleCPRF(cprfDetails!)}/>
+        </Modal>
+      )}
+      {showAddModal && (
+        <Modal
+          maxWidth={'70%'}
+          width={'70%'}
+          title="Adquirir nova CPRF"
+          onClose={() => setShowAddModal(false)}
+        >
+          <AddCPRF />
         </Modal>
       )}
     </>
