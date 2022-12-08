@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-//assets
-import Novo from '../../assets/novo.png'
 
 //components
 import Button from '../../components/Button';
@@ -15,11 +12,16 @@ import { CPRF, CPRFList } from '../../store/types';
 import Item from './Item';
 import CPRFDetail from './CPRFDetail';
 import AddCPRF from './AddCPRF';
-import { Container, ContainerButton, ContainerForm, Content, ListCPRFs, Title, TitleModal } from './styles';
+import { Container, Content, FilterContainer, ListCPRFs, TopListContainer } from './styles';
+import DropDownMenu from '../../components/DropDownMenu';
 
 
 function Home() {
   const { CPRFs, updateCPRF } = React.useContext(CPRFContext) as CPRFList;
+  const [CPRFsFiltered, setCPRFsFiltered] = useState<CPRF[]>(CPRFs)
+
+  const [status, setStatus] = useState('')
+  const [value, setValue] = useState('')
 
   const [showAddModal, setShowAddModal] = useState(false)
   const [showDetailModal, setShowDetailModal] = useState(false)
@@ -35,6 +37,42 @@ function Home() {
     setShowDetailModal(false)
   }
 
+  const statusList = ['ativa', 'liquidada']
+  const typeList = ['cupom', 'bullet', 'ipca']
+
+  const setFilter = (type: string, value: string) => {
+    switch (type) {
+      case 'status':
+        setCPRFsFiltered(CPRFs.filter(item => item.status === value))
+        break;
+      case 'type':
+        setCPRFsFiltered(CPRFs.filter(item => item.type === value))
+        break;
+      case 'date':
+        setCPRFsFiltered(CPRFs.sort((a, b) => (a.signedDate < b.signedDate) ? -1 : 1))
+        break;
+      case 'clean':
+        setCPRFsFiltered(CPRFs)
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  const returnOption = (status: string, value: string) => {
+    setStatus(status)
+    setValue(value)
+  }
+
+  useEffect(() => {
+    setCPRFsFiltered(CPRFs)
+  }, [CPRFs])
+
+  useEffect(() => {
+    setFilter(status, value)
+  },[status, value])
+
   return (
     <>
       <ToastContainer />
@@ -42,14 +80,20 @@ function Home() {
         <Header />
         <Content>
           <ListCPRFs>
-            <Button
-              children='NOVA CPRF'
-              disabled={false}
-              type="outlined"
-              loading={false}
-              onClick={() => setShowAddModal(true)}
-            />
-            {CPRFs && CPRFs.map(cprf => (
+            <TopListContainer>
+              <FilterContainer>
+                <DropDownMenu data={statusList} title='Selecione o status' type='status' dispatchFilter={returnOption}/>
+                <DropDownMenu data={typeList} title='Selecione o tipo' type='type' dispatchFilter={returnOption}/>
+              </FilterContainer>
+              <Button
+                children='NOVA CPRF'
+                disabled={false}
+                type="outlined"
+                loading={false}
+                onClick={() => setShowAddModal(true)}
+              />
+            </TopListContainer>
+            {CPRFsFiltered && CPRFsFiltered.map(cprf => (
               <Item cprf={cprf} showDetails={() => showDetails(cprf)} />
             ))}
           </ListCPRFs>

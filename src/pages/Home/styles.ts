@@ -41,8 +41,21 @@ export const ListCPRFs = styled.div`
       cursor: pointer;
     }
   }
-
 `
+
+export const TopListContainer = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const FilterContainer = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 export const Title = styled.h1`
   font-size: var(--size-40);
   color: var(--color-blue-base);
